@@ -98,13 +98,17 @@ def main():
     add_questions()
     add_quiz()
     add_links()
+def get_guestion_after(id_quiz=0,id_quest=1):
+    open()
+    querry = '''
+           SELECT quiz_content.id,question.question, question.answer,question.wrong1,
+           question.wrong2, question.wrong3 FROM question,quiz_content
+           WHERE quiz_content.question_id == question.id
+           AND quiz_content.id > ? AND quiz_content.quiz_id == ?
+           ORDER BY quiz_content.id
 
-if __name__ == "__main__":
-    main()
-
-
-
-
-
-
-
+    '''
+    cursor.execute(querry,[id_quest,id_quiz])
+    result = cursor.fetchone()
+    close()
+    return result
